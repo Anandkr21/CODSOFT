@@ -1,4 +1,4 @@
-const { Flight } = require("../model/flightMode")
+const { Flight } = require("../model/flightModel")
 
 
 exports.allflight = async(req,res) =>{
@@ -20,17 +20,55 @@ exports.allflight = async(req,res) =>{
 
 exports.addflight = async(req,res) =>{
     try {
-        const addflight = req.body;
-        await Flight.insertMany([{addflight}]);
+        const {airline,flightNumber,departureAirport,arrivalAirport,arrivalDateTime,departureDateTime,duration,price,availableSeats,} = req.body;
+        const flight = await Flight.insertMany([{airline,flightNumber,departureAirport,arrivalAirport,arrivalDateTime,departureDateTime,duration,price,availableSeats}]);
         res.status(201).send({
             status:true,
-            msg: "Flight Added!",
-            data : addflight
+            msg: "Flight Added Successfully!",
+            flight_Detail : flight
         })
     } catch (error) {
         res.status(500).send({
             status: true,
             msg: "Internal server error."
         })   
+    }
+}
+
+exports.updateFlight = async(req,res) =>{
+
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const updated = await Flight.findByIdAndUpdate({_id:id},data);
+        res.status(200).send({
+            status:true,
+            msg: `Flight updated with id ${id}`,
+            updated_Data: updated
+        })
+    } catch (error) {
+        res.status(500).send({
+            status:false,
+            msg: "Internal server error",
+            error:error.message
+        })
+    }
+}
+
+exports.deleteFlight = async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const flight_delete = await Flight.findByIdAndDelete({_id:id})
+        res.status(200).send({
+            status:true,
+            msg: `Flight deleted with id ${id}`,
+            deleted_flight: flight_delete
+        })
+    } catch (error) {
+        res.status(500).send({
+            status:false,
+            msg: "Internal server error",
+            error:error.message
+        })
     }
 }
