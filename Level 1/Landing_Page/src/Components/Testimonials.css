@@ -1,0 +1,43 @@
+.feedback{
+    margin: auto;
+}
+.testimonials {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .testimonials h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Slider Container Styles */
+  .slider-container {
+    margin: auto;
+    width: 96%; /* Set the slider container to full width */
+  }
+  
+  /* Testimonial Item Styles */
+  .testimonial-item {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 10px; /* Add some space between the testimonial items */
+  }
+  
+
+  .feedback-text {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .author {
+    font-size: 18px;
+    font-style: italic;
+    color: #777;
+  }
+  
